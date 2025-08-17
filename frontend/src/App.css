@@ -160,7 +160,7 @@ input:focus, textarea:focus, select:focus {
   font-weight: 700;
 }
 
-/* --- NEW STYLES for Strategy Grid --- */
+/* NEW STYLES */
 .strategy-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -190,7 +190,7 @@ input:focus, textarea:focus, select:focus {
   font-size: 1.05rem;
   line-height: 1.8;
   color: #333;
-  flex-grow: 1; /* Make text take available space */
+  flex-grow: 1; /
 }
 
 .generate-socials-button {
@@ -217,7 +217,7 @@ input:focus, textarea:focus, select:focus {
   cursor: not-allowed;
 }
 
-/* --- Social Post Styles --- */
+/* Social Post Style*/
 .social-posts-section {
     margin-top: 3.5rem;
 }

@@ -6,14 +6,12 @@ from dotenv import load_dotenv
 from pydantic import BaseModel
 import re
 
-# --- SETUP ---
+# SETUP
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 app = FastAPI()
 
-# --- CORS MIDDLEWARE ---
-# This is the final configuration, allowing both your local development server
-# and your live Vercel website to connect to this backend.
+# CORS MIDDLEWARE
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -25,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- DATA STRUCTURES ---
+# DATA STRUCTURES
 class StrategyRequest(BaseModel):
     product_name: str
     product_description: str
@@ -39,13 +37,13 @@ class SocialsRequest(BaseModel):
     tone: str
     core_narrative: str
 
-# --- ENDPOINT 1: GENERATE INITIAL STRATEGIES ---
+# POINT 1: INITIAL STRATEGIES
 @app.post("/generate-strategies")
 async def generate_strategies(request: StrategyRequest):
     try:
         model = genai.GenerativeModel('gemini-2.5-flash-lite')
 
-        # This prompt is specifically engineered to think from an SME's perspective.
+        # SME's perspective.
         prompt = f"""
         You are a panel of three different scrappy, innovative marketing consultants who specialize in helping small and medium-sized enterprises (SMEs) in India grow.
         For the product below, each of you will propose one unique, high-level marketing strategy concept.
@@ -74,7 +72,7 @@ async def generate_strategies(request: StrategyRequest):
         print(f"An error occurred: {e}")
         return {"error": "Failed to generate strategies."}
 
-# --- ENDPOINT 2: GENERATE SOCIAL MEDIA POSTS ---
+# POINT 2: SOCIAL MEDIA
 @app.post("/generate-socials")
 async def generate_socials(request: SocialsRequest):
     try:
