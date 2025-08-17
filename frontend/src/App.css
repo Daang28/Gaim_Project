@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --primary-color: #7B2BFC;
+  --secondary-color: #1DE9B6;
+  --bg-start: #F8F7FF;
+  --bg-end: #E6F7F5;
+  --card-bg-color: #FFFFFF;
+  --text-color: #4A4A4A;
+  --heading-color: #1A0D33;
+  --border-color: #EAEAF0;
+  --shadow: 0 12px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1200px; /* Wider container for columns */
+  padding: 0 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.logo {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  padding: 12px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo span {
+  font-size: 2.5rem;
+  display: block;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--heading-color);
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: #6c757d;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.generator-form {
+  background: var(--card-bg-color);
+  padding: 2.5rem;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  margin: 0 auto 3.5rem auto;
+  border: 1px solid var(--border-color);
+  max-width: 800px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  color: #333;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  background-color: #fcfdff;
+  color: #333;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(123, 43, 252, 0.1);
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  .options-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.generate-button {
+  width: 100%;
+  padding: 1.1rem;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.generate-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(123, 43, 252, 0.3);
+}
+
+.generate-button:disabled {
+  background: #adb5bd;
+  cursor: not-allowed;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.results-container {
+  margin-top: 3.5rem;
+}
+
+.results-title {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--heading-color);
+  margin-bottom: 2.5rem;
+  font-weight: 700;
+}
+
+/* --- NEW STYLES for Strategy Grid --- */
+.strategy-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 992px) {
+  .strategy-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.strategy-card {
+  background: var(--card-bg-color);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.narrative-content {
+  white-space: pre-wrap;
+  font-family: 'Georgia', serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #333;
+  flex-grow: 1; /* Make text take available space */
+}
+
+.generate-socials-button {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.generate-socials-button:hover {
+  background: var(--primary-color-dark);
+  transform: translateY(-2px);
+}
+
+.generate-socials-button:disabled {
+  background: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* --- Social Post Styles --- */
+.social-posts-section {
+    margin-top: 3.5rem;
+}
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .social-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.social-card {
+  background: var(--card-bg-color);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(50, 50, 93, 0.15);
+}
+
+.social-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.social-card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.social-card-header svg {
+  color: var(--primary-color);
+}
+
+.social-card-content {
+  white-space: pre-wrap;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  padding: 1.5rem;
+  margin: 0;
+  flex-grow: 1;
+  line-height: 1.7;
+}
+
+.error-message {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #c62828;
+  border-radius: 12px;
+  text-align: center;
+}
