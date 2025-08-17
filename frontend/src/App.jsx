@@ -22,6 +22,7 @@ function App() {
   const [isSocialsLoading, setIsSocialsLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // This is the corrected and improved function
   const handleStrategySubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -31,25 +32,24 @@ function App() {
     setSelectedStrategyIndex(null);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/generate-strategies', {
+      // This single line will use the Vercel URL if it exists, 
+      // otherwise it will fall back to your local server address.
+      const apiUrl = `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/generate-strategies`;
+      
+      const response = await axios.post(apiUrl, {
         product_name: productName,
         product_description: productDescription,
         target_audience: targetAudience,
         tone: tone,
       });
-
-      // --- THIS IS THE UPGRADED PART ---
-      // Check if the response from the backend contains strategies or an error
+      
       if (response.data.strategies) {
         setStrategies(response.data.strategies);
       } else {
-        // If the backend sent an error message, display it
-        setError(response.data.error || 'An unexpected error occurred in the backend.');
+        setError(response.data.error || 'An unexpected error occurred.');
       }
-
     } catch (err) {
-      // This catches network errors (e.g., if the backend server is down)
-      setError('Failed to connect to the backend server. Is it running?');
+      setError('Failed to connect to the backend. Is it running?');
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -61,27 +61,27 @@ function App() {
     setIsSocialsLoading(true);
     setSocialPosts('');
     setError('');
-
     try {
-        const response = await axios.post('http://127.0.0.1:8000/generate-socials', {
-            product_name: productName,
-            product_description: productDescription,
-            target_audience: targetAudience,
-            tone: tone,
-            core_narrative: strategyText
-        });
-
-        if (response.data.social_media_posts) {
-            setSocialPosts(response.data.social_media_posts);
-        } else {
-            setError(response.data.error || 'An unexpected error occurred while generating social posts.');
-        }
-
+      const apiUrl = `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/generate-socials`;
+      
+      const response = await axios.post(apiUrl, {
+        product_name: productName,
+        product_description: productDescription,
+        target_audience: targetAudience,
+        tone: tone,
+        core_narrative: strategyText
+      });
+      
+      if (response.data.social_media_posts) {
+        setSocialPosts(response.data.social_media_posts);
+      } else {
+        setError(response.data.error || 'Failed to generate social posts.');
+      }
     } catch (err) {
-        setError('Failed to generate social media posts.');
-        console.error(err);
+      setError('Failed to generate social media posts.');
+      console.error(err);
     } finally {
-        setIsSocialsLoading(false);
+      setIsSocialsLoading(false);
     }
   }
 
@@ -140,7 +140,7 @@ function App() {
                   className="generate-socials-button"
                   disabled={isSocialsLoading}
                 >
-                  {isSocialsLoading && selectedStrategyIndex === index ? 'Generating...' : 'Generate Social Posts for this Strategy'}
+                  {isSocialsLoading && selectedStrategyIndex === index ? 'Generating Posts...' : 'Generate Social Posts for this Strategy'}
                 </button>
               </div>
             ))}
